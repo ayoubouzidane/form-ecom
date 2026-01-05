@@ -25,47 +25,34 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       max-width: 500px;
       width: 90%;
-      animation: fadeIn 1s ease forwards;
-    }
-
-    .thanks-box h1 {
-      margin-bottom: 20px;
-      font-size: 28px;
-    }
-
-    .thanks-box p {
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
-    .thanks-box a {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 20px;
-      background: #fff;
-      color: orange;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-
-    .thanks-box a:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-    }
-
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
   <div class="thanks-box">
     <h1>شكراً لك!</h1>
+
+    <p><strong>Nom complet:</strong> <span id="fullname"></span></p>
+    <p><strong>Numéro de téléphone:</strong> <span id="phone"></span></p>
+    <p><strong>Ville:</strong> <span id="city"></span></p>
+    <p><strong>Produit:</strong> <span id="product"></span></p>
+    <p><strong>Localisation exacte:</strong> <span id="location"></span></p>
+    <p><strong>Quantité:</strong> <span id="quantity"></span></p>
+
     <p>لقد تم استلام طلبك بنجاح. سنقوم بالتواصل معك قريباً.</p>
+
     <a href="../index.html">عودة للصفحة الرئيسية</a>
   </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+
+    document.getElementById("fullname").textContent = params.get("fullname");
+    document.getElementById("phone").textContent = params.get("phone");
+    document.getElementById("city").textContent = params.get("city");
+    document.getElementById("product").textContent = params.get("product");
+    document.getElementById("location").textContent = params.get("location");
+    document.getElementById("quantity").textContent = params.get("quantity");
+  </script>
 </body>
 </html>
