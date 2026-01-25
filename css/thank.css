@@ -1,38 +1,12 @@
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-  font-family: 'Poppins', Arial, sans-serif;
-}
-
-body {
-  background-color: #faf7f400;
-  color: #333;
-  line-height: 1.6;
-}
-.p a1 {
-  font-size: 20px;
-  margin: 10px 0;
-  text-align: left;
-}
-.h2 {
-  font-size: 10px;
-  margin-bottom: 20px;
-  text-align: center;
-  color: red;
-}
-    .thanks-box {
-      background: orange;
-      color: #fff;
-      padding: 40px 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      max-width: 500px;
-      width: 90%;
-    }
-        body {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You!</title>
+  <link rel="stylesheet" href="css/thank.css">
+  <style>
+    body {
       font-family: 'Poppins', Arial, sans-serif;
       background: #faf7f4;
       display: flex;
@@ -43,13 +17,46 @@ body {
       text-align: center;
     }
 
-
-    .infos {
-      margin-top: 20px;
-      text-align: left;
-      background-color: #ffffff00;
-      border-radius: 15px;
-      box-shadow: #333 0px 0px 10px;
-        padding: 20px;
-        
+    .thanks-box {
+      background: orange;
+      color: #fff;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      max-width: 500px;
+      width: 90%;
     }
+  </style>
+</head>
+<body>
+  <div class="thanks-box">
+    <h1>شكراً لك!</h1>
+    <h2 style="color: red;">المرجو أخذ لقطة شاشة للمعلومات وإرسالها إلينا عبر واتساب.</h2>
+   <div class="infos">
+    <p class="a1"><strong  style="color: black ;">Nom complet:</strong> <span id="fullname"></span></p>
+    <p class="a1"><strong style="color: black;">Numéro de téléphone:</strong> <span id="phone"></span></p>
+    <p class="a1"><strong style="color: black;">Ville:</strong> <span id="city"></span></p>
+    <p class="a1"><strong style="color: black;">Produit:</strong> <span id="product"></span></p>
+    <p class="a1"><strong style="color: black;">Localisation exacte:</strong> <span id="location"></span></p>
+    <p class="a1"><strong style="color: black;">Quantité:</strong> <span id="quantity"></span></p>
+    </div>
+
+
+
+    <p>لقد تم استلام طلبك بنجاح. سنقوم بالتواصل معك قريباً.</p>
+
+    <a href="../index.html">عودة للصفحة الرئيسية</a>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+
+    document.getElementById("fullname").textContent = params.get("fullname");
+    document.getElementById("phone").textContent = params.get("phone");
+    document.getElementById("city").textContent = params.get("city");
+    document.getElementById("product").textContent = params.get("product");
+    document.getElementById("location").textContent = params.get("location");
+    document.getElementById("quantity").textContent = params.get("quantity");
+  </script>
+</body>
+</html>
