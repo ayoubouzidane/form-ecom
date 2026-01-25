@@ -29,21 +29,27 @@
         </div>
         <div class="main">
             <h2 style="color: orange;">Remplissez le formulaire suivant :</h2>
-             <form action="pages/thank.html" method="get">
-                <input type="text" placeholder="Nom complet / الاسم الكامل" required>
-                <input type="tel" placeholder="Numéro de téléphone / رقم الهاتف" required>
-              
-                <input type="text" placeholder="ville / المدينة" required>
+            <form id="leadForm" action="pages/thank.html" method="get">
 
-                  <select name="produit" id="produit" required>
-                    <option value="" disabled selected>Choisissez un produit / اختر منتجًا</option>
-                    <option value="produit">produit</option>
-                  </select>
+  <input type="text" name="fullname" placeholder="Nom complet / الاسم الكامل" required>
 
-                <input type="text" placeholder="Localisation exacte / الموقع بالضبط" required>
-                <input type="number" placeholder="Quantité / الكمية" required>
-                <button type="submit">Envoyer</button>
-             </form>
+  <input type="tel" name="phone" placeholder="Numéro de téléphone / رقم الهاتف" required>
+
+  <input type="text" name="city" placeholder="ville / المدينة" required>
+
+  <select name="produit" id="produit" required>
+    <option value="" disabled selected>Choisissez un produit / اختر منتجًا</option>
+    <option value="produit">produit</option>
+  </select>
+
+  <input type="text" name="location" placeholder="Localisation exacte / الموقع بالضبط" required>
+
+  <input type="number" name="quantity" placeholder="Quantité / الكمية" required>
+
+  <button type="submit">Envoyer</button>
+
+</form>
+
         </div>
 
         <div class="text">
@@ -63,7 +69,17 @@
     
     
     
-    
+     <script>
+document.getElementById("leadForm").addEventListener("submit", function () {
+  const formData = new FormData(this);
+
+  fetch("PASTE_YOUR_ZAPIER_WEBHOOK_URL_HERE", {
+    method: "POST",
+    body: formData
+  });
+});
+</script>
+
     
     
     
@@ -95,4 +111,5 @@
 
 
 </body>
+
 </html>
