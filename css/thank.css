@@ -9,7 +9,7 @@
 }
 
 body {
-  background-color: #faf7f4;
+  background-color: #faf7f400;
   color: #333;
   line-height: 1.6;
 }
@@ -17,11 +17,29 @@ body {
   font-size: 20px;
   margin: 10px 0;
   text-align: left;
-
 }
-h2 {
+.h2 {
   font-size: 10px;
   margin-bottom: 20px;
   text-align: center;
   color: red;
 }
+    .thanks-box {
+      background: orange;
+      color: #fff;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      max-width: 500px;
+      width: 90%;
+    }
+        body {
+      font-family: 'Poppins', Arial, sans-serif;
+      background: #faf7f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
