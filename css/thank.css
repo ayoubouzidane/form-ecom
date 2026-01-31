@@ -21,7 +21,7 @@ body {
   font-size: 10px;
   margin-bottom: 20px;
   text-align: center;
-  color: red;
+  color: rgb(26, 23, 23);
 }
     .thanks-box {
       background: orange;
@@ -53,5 +53,6 @@ body {
   box-shadow: #333 0px 0px 10px;
   padding: 20px;
 }
+
 
 
