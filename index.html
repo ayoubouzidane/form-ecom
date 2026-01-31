@@ -49,40 +49,51 @@
             </form>
 
             <!-- JS for Zapier Webhook -->
-            <script>
-            document.getElementById("leadForm").addEventListener("submit", function(e) {
-                e.preventDefault(); // stop default submission
+           <script>
+document.getElementById("leadForm").addEventListener("submit", function(e) {
+    e.preventDefault();
 
-                // Grab all form values manually
-                const fullname = document.querySelector('input[name="fullname"]').value;
-                const phone = document.querySelector('input[name="phone"]').value;
-                const city = document.querySelector('input[name="city"]').value;
-                const product = document.querySelector('select[name="product"]').value;
-                const location = document.querySelector('input[name="location"]').value;
-                const quantity = document.querySelector('input[name="quantity"]').value;
+    const fullname = document.querySelector('input[name="fullname"]').value;
+    const phone = document.querySelector('input[name="phone"]').value;
+    const city = document.querySelector('input[name="city"]').value;
+    const product = document.querySelector('select[name="product"]').value;
+    const location = document.querySelector('input[name="location"]').value;
+    const quantity = document.querySelector('input[name="quantity"]').value;
 
-                // Validation: make sure a product is selected
-                if (!product) {
-                    alert("Veuillez sélectionner un produit !");
-                    return;
-                }
+    if (!product) {
+        alert("Veuillez sélectionner un produit !");
+        return;
+    }
 
-                const data = { fullname, phone, city, product, location, quantity };
+    const data = { fullname, phone, city, product, location, quantity };
 
-                console.log("Sending data to Zapier:", data); // DEBUG: check console
+    console.log("Sending data to Zapier:", data);
 
-                fetch("https://hooks.zapier.com/hooks/catch/26189951/ul5qvqs/", {
-                    method: "POST",
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                })
-                .then(() => {
-                    // Redirect after sending
-                    window.location.href = "pages/thank.html";
-                })
-                .catch(err => console.error("Error sending data to Zapier:", err));
-            });
-            </script>
+    fetch("https://hooks.zapier.com/hooks/catch/26189951/ul5qvqs/", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        console.log("Response received:", response.status);
+        if (response.ok) {
+            console.log("✅ Data sent successfully!");
+            alert("✅ Merci ! Vos données ont été envoyées.");
+            // Redirect after 1 second
+            setTimeout(() => {
+                window.location.href = "pages/thank.html";
+            }, 1000);
+        } else {
+            console.error("Error response:", response.status);
+            alert("⚠️ Erreur: " + response.status);
+        }
+    })
+    .catch(err => {
+        console.error("❌ Fetch error:", err);
+        alert("❌ Erreur de connexion: " + err.message);
+    });
+});
+</script>
         </div>
 
         <!-- Info Text -->
@@ -98,3 +109,4 @@
     </main>
 </body>
 </html>
+
