@@ -29,27 +29,43 @@
         </div>
         <div class="main">
             <h2 style="color: orange;">Remplissez le formulaire suivant :</h2>
-            <form id="leadForm" action="pages/thank.html" method="get">
-
+           <form id="leadForm">
   <input type="text" name="fullname" placeholder="Nom complet / الاسم الكامل" required>
-
   <input type="tel" name="phone" placeholder="Numéro de téléphone / رقم الهاتف" required>
-
   <input type="text" name="city" placeholder="ville / المدينة" required>
-
+  
   <select name="product" required>
     <option value="" disabled selected>Choisissez un produit / اختر منتجًا</option>
     <option value="Produit A">Produit A</option>
     <option value="Produit B">Produit B</option>
   </select>
-
+  
   <input type="text" name="location" placeholder="Localisation exacte / الموقع بالضبط" required>
-
   <input type="number" name="quantity" placeholder="Quantité / الكمية" required>
-
+  
   <button type="submit">Envoyer</button>
-
 </form>
+
+<script>
+document.getElementById("leadForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // stop default form submission
+
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+
+    fetch("YOUR_ZAPIER_WEBHOOK_URL", {  // <-- put your Zapier webhook URL here
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then(() => {
+        // after sending to Zapier, redirect to thank.html
+        window.location.href = "pages/thank.html";
+    }).catch(err => console.error(err));
+});
+</script>
+
 
         </div>
 
@@ -105,4 +121,5 @@
 </body>
 
 </html>
+
 
