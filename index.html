@@ -5,134 +5,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
-    <title>formulaire</title>
+    <title>Formulaire</title>
 </head>
 <body>
+    <!-- Header -->
     <header>
         <nav class="logo">
             <img src="photos/logo.png" alt="">
         </nav>
-
-            <nav class="menu">
-      
-      <ul>
-         <li><a href="index.html">🏠 Accueil</a></li>
-         <li><a href="https://www.instagram.com/silka_drop.36/">📷 Visit my Instagram</a></li>
-      </ul>
-    </nav>
+        <nav class="menu">
+            <ul>
+                <li><a href="index.html">🏠 Accueil</a></li>
+                <li><a href="https://www.instagram.com/silka_drop.36/">📷 Visit my Instagram</a></li>
+            </ul>
+        </nav>
     </header>
 
-
+    <!-- Main Section -->
     <main class="hero">
         <div class="photo-background">
             <img src="photos/background-pic.jpg" alt="" width="100%" height="100%">
         </div>
+
         <div class="main">
             <h2 style="color: orange;">Remplissez le formulaire suivant :</h2>
-          <form id="leadForm">
-  <input type="text" name="fullname" placeholder="Nom complet / الاسم الكامل" required>
-  <input type="tel" name="phone" placeholder="Numéro de téléphone / رقم الهاتف" required>
-  <input type="text" name="city" placeholder="ville / المدينة" required>
-  
-  <select name="product" required>
-    <option value="" disabled selected>Choisissez un produit / اختر منتجًا</option>
-    <option value="Produit A">Produit A</option>
-    <option value="Produit B">Produit B</option>
-  </select>
-  
-  <input type="text" name="location" placeholder="Localisation exacte / الموقع بالضبط" required>
-  <input type="number" name="quantity" placeholder="Quantité / الكمية" required>
-  
-  <button type="submit">Envoyer</button>
-</form>
+            
+            <!-- Fixed Form -->
+            <form id="leadForm">
+                <input type="text" name="fullname" placeholder="Nom complet / الاسم الكامل" required>
+                <input type="tel" name="phone" placeholder="Numéro de téléphone / رقم الهاتف" required>
+                <input type="text" name="city" placeholder="ville / المدينة" required>
+                
+                <select name="product" required>
+                    <option value="" disabled selected>Choisissez un produit / اختر منتجًا</option>
+                    <option value="Produit A">Produit A</option>
+                    <option value="Produit B">Produit B</option>
+                </select>
+                
+                <input type="text" name="location" placeholder="Localisation exacte / الموقع بالضبط" required>
+                <input type="number" name="quantity" placeholder="Quantité / الكمية" required>
+                
+                <button type="submit">Envoyer</button>
+            </form>
 
-<script>
-document.getElementById("leadForm").addEventListener("submit", function(e) {
-    e.preventDefault(); // stop normal submission
+            <!-- JS for Zapier Webhook -->
+            <script>
+            document.getElementById("leadForm").addEventListener("submit", function(e) {
+                e.preventDefault(); // stop default submission
 
-    // Grab all form values manually
-    const fullname = document.querySelector('input[name="fullname"]').value;
-    const phone = document.querySelector('input[name="phone"]').value;
-    const city = document.querySelector('input[name="city"]').value;
-    const product = document.querySelector('select[name="product"]').value;
-    const location = document.querySelector('input[name="location"]').value;
-    const quantity = document.querySelector('input[name="quantity"]').value;
+                // Grab all form values manually
+                const fullname = document.querySelector('input[name="fullname"]').value;
+                const phone = document.querySelector('input[name="phone"]').value;
+                const city = document.querySelector('input[name="city"]').value;
+                const product = document.querySelector('select[name="product"]').value;
+                const location = document.querySelector('input[name="location"]').value;
+                const quantity = document.querySelector('input[name="quantity"]').value;
 
-    // Create the object to send to Zapier
-    const data = { fullname, phone, city, product, location, quantity };
+                // Validation: make sure a product is selected
+                if (!product) {
+                    alert("Veuillez sélectionner un produit !");
+                    return;
+                }
 
-    console.log("Sending data to Zapier:", data); // Debug: check values in console
+                const data = { fullname, phone, city, product, location, quantity };
 
-    // Send data to your Zapier webhook
-    fetch("https://hooks.zapier.com/hooks/catch/26189951/ul5qvqs/", {
-        method: "POST",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-    })
-    .then(() => {
-        // After sending, redirect to your thank you page
-        window.location.href = "pages/thank.html";
-    })
-    .catch(err => console.error("Error sending data to Zapier:", err));
-});
-</script>
+                console.log("Sending data to Zapier:", data); // DEBUG: check console
 
-
+                fetch("https://hooks.zapier.com/hooks/catch/26189951/ul5qvqs/", {
+                    method: "POST",
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                })
+                .then(() => {
+                    // Redirect after sending
+                    window.location.href = "pages/thank.html";
+                })
+                .catch(err => console.error("Error sending data to Zapier:", err));
+            });
+            </script>
         </div>
 
+        <!-- Info Text -->
         <div class="text">
-
             <h2>
-             <strong>
+                <strong>
                 📌 من فضلك أكمل هذا النموذج بعناية!  
-📝 تساعدنا معلوماتك الواضحة في تسليم طلبك بسرعة وسهولة  و شحنه عبر شركة التوصيل.  
-✅ تأكد من ملء جميع البيانات بدقة لتجربة أفضل معنا في Ayoub Tech.
-
-             </strong>
-
+                📝 تساعدنا معلوماتك الواضحة في تسليم طلبك بسرعة وسهولة و شحنه عبر شركة التوصيل.  
+                ✅ تأكد من ملء جميع البيانات بدقة لتجربة أفضل معنا في Ayoub Tech.
+                </strong>
             </h2>
         </div>
-
     </main>
-    
-    
-    
-
-
-    
-    
-    
-    
-     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
-
 </html>
-
-
-
-
