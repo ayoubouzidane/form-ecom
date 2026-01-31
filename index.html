@@ -29,7 +29,7 @@
         </div>
         <div class="main">
             <h2 style="color: orange;">Remplissez le formulaire suivant :</h2>
-           <form id="leadForm">
+          <form id="leadForm">
   <input type="text" name="fullname" placeholder="Nom complet / الاسم الكامل" required>
   <input type="tel" name="phone" placeholder="Numéro de téléphone / رقم الهاتف" required>
   <input type="text" name="city" placeholder="ville / المدينة" required>
@@ -53,7 +53,7 @@ document.getElementById("leadForm").addEventListener("submit", function(e) {
     const formData = new FormData(this);
     const data = Object.fromEntries(formData.entries());
 
-    fetch("YOUR_ZAPIER_WEBHOOK_URL", {  // <-- put your Zapier webhook URL here
+    fetch("https://hooks.zapier.com/hooks/catch/26189951/ul5qvqs/", {  // your Zapier URL
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -121,5 +121,6 @@ document.getElementById("leadForm").addEventListener("submit", function(e) {
 </body>
 
 </html>
+
 
 
